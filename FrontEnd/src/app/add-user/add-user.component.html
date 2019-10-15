@@ -1,1 +1,60 @@
-<p>add-user works!</p>
+<div class=" container col-md-10">
+    <div class="container col-md-10">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+            <input type="hidden" class="form-control" name="User_Id" #name="ngModel"
+            [(ngModel)]="userService.selectedUser._id">
+
+            <div class="form-group row col-md-14">
+                    <div class="col col-md-2">
+                      <label for="firstname">First Name:
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                    <div class="col col-md-5 float-right">
+                      <input type="text" class="form-control" name="First_Name" #name="ngModel"
+                        [(ngModel)]="userService.selectedUser.First_Name" placeholder="Enter the First Name">
+                    </div>
+            </div>
+
+            <div class="form-group row col-md-14">
+                    <div class="col col-md-2">
+                      <label for="lastname">Last Name:
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                    <div class="col col-md-5 float-right">
+                      <input type="text" class="form-control" name="Last_Name" #name="ngModel"
+                        [(ngModel)]="userService.selectedUser.Last_Name" placeholder="Enter the last Name">
+                    </div>
+            </div>
+
+            <div class="form-group row col-md-14">
+                    <div class="col col-md-2">
+                      <label for="lastname">Employee Id:
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                    <div class="col col-md-5 float-right">
+                      <input type="text" class="form-control" name="Employee_Id" #name="ngModel"
+                        [(ngModel)]="userService.selectedUser.Employee_Id" placeholder="Enter the employee id">
+                    </div>
+            </div>
+
+            <div class="form-group row col-md-10 float-right">
+
+                    <button class="col col-md-2" type="submit">Submit {{EditOrAdd}}</button>&nbsp;
+                    <button class="col col-md-2" type="button" (click)="resetForm(userForm)">Reset</button>
+            
+            
+                  </div>
+
+
+
+
+      </form>
+    </div>
+  
+  
+  
+  
+  

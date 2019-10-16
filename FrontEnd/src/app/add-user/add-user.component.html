@@ -1,7 +1,8 @@
 <div class=" container col-md-10">
-    <div class="container col-md-10">
+    <div class="container col-md-20">
+        <div class="container col-md-10">
       <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-            <input type="hidden" class="form-control" name="User_Id" #name="ngModel"
+            <input type="hidden" class="form-control" name="_id" #name="ngModel"
             [(ngModel)]="userService.selectedUser._id">
 
             <div class="form-group row col-md-14">
@@ -42,7 +43,7 @@
 
             <div class="form-group row col-md-10 float-right">
 
-                    <button class="col col-md-2" type="submit">Submit {{EditOrAdd}}</button>&nbsp;
+                    <button class="col col-md-2" type="submit">{{EditOrAdd}}</button>&nbsp;
                     <button class="col col-md-2" type="button" (click)="resetForm(userForm)">Reset</button>
             
             
@@ -53,6 +54,77 @@
 
       </form>
     </div>
+    </div>
+    
+<br>
+<br>
+
+<div class="container col-md-10">
+    <div class="row col-md-10">
+      <div class="col col-md-5">
+        <input type="text" class="form-control" placeholder="Search..." name="search"
+          (input)="searchUsers($event.target.value)">
+      </div>
+      <div class="col col-md-1 float-right">
+        <label>Sort:</label>
+      </div>
+      <div class="col col-md-5">
+        <button type="button" (click)="sortUsers('First_Name')">First Name</button> &nbsp;
+        <button type="button" (click)="sortUsers('Last_Name')">Last Name</button> &nbsp;
+        <button type="button" (click)="sortUsers('Employee_Id')">Employee Id</button>
+      </div>
+    </div>
+
+    <br />
+    <hr>
+  </div>
+
+    <div class="container col-md-10">
+        <div class="container col-md-16">
+            <div class="list-group col-md-16" *ngFor="let user of userService.users">
+                <div class="list-item col-md-16">
+    
+                    <div class="row col-md-10">
+                              
+                        <div class="col col-md-9 float-left">
+                            <input type="text" [value]="user.First_Name" id="firstName" readonly class="form-control">
+                        </div>
+                        <div class="col col-md-3 float-right">
+                            <button class="col col-md-10" type="button" (click)="editUser(user)">Edit</button>
+                          </div>
+
+                      </div>
+    
+                      <div class="row col-md-10">
+                          <div class="col col-md-9 float-left">
+                            <input type="text" [value]="user.Last_Name" id="lastName" readonly class="form-control">
+                          </div>
+                          <div class="col col-md-3 float-right">
+                              <button class="col col-md-10" type="button" (click)="deleteUser(user)">Delete</button>
+                            </div>
+                        </div>
+    
+                        <div class="row col-md-10">
+                            <div class="col col-md-4 float-left">
+                                <input type="text" [value]="user.Employee_Id" id="employeeId" readonly class="form-control">
+                              </div>
+                        </div>
+
+                        <div class="row col-md-10">
+                            <div class="col col-md-4 float-left">
+                                <input type="text" [value]="user._id" id="_id" readonly class="form-control">
+                              </div>
+                        </div>
+    
+                        <hr style="border-style: solid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  </div>
   
   
   

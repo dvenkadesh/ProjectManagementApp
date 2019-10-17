@@ -4,7 +4,7 @@ import { User } from '../shared/user.model';
 import { Response} from '../shared/response.model';
 //import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -16,9 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 export class AddUserComponent implements OnInit {
 
   UsersList       : User[];
-  public EditOrAdd: String;
+  EditOrAdd: String;
 
-  constructor(public userService: UserService, public toastr: ToastrService) { 
+  constructor(public userService: UserService) { 
     this.EditOrAdd = "Add";
   }
   

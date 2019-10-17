@@ -1,1 +1,35 @@
-<p>add-task works!</p>
+<div class="container col-md-6"> 
+        <div class="row col-md-16">
+                <label class="control-label col-sm-2" for="task">Task:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="task" placeholder="Enter task" [(ngModel)]="taskToAdd.Task_Name">
+                </div>
+        </div>
+
+        <div class="row col-md-16">
+                    <label class="control-label col-sm-2" for="priority">Priority:</label>
+                    <div class="col col-sm-8">
+                            <input type="range" name='priority'  min="0" max="30" step="1" style="width: 100%"  [(ngModel)]="taskToAdd.Priority" [required]="!isParentTask" [disabled]="isParentTask">
+                    </div>
+                    
+        </div>
+
+        <div class="row col-md-16">
+                <label class="control-label col-sm-2" for="parent">Start Date:</label>&nbsp;&nbsp;&nbsp;
+                <input class="col-sm-3" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="startDate" ngbDatepicker [disabled]="isParentTask"
+                  #d="ngbDatepicker" (click)="d.toggle()">
+                <label class="control-label col-sm-2" for="parent">End Date:</label>
+        
+                <input class="col-sm-3" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="endDate" ngbDatepicker  [disabled]="isParentTask"
+                  #d1="ngbDatepicker" (click)="d1.toggle()">
+        
+        </div><br>
+
+        <div class="row col-sm-12 text-right float-right">
+                <div class="col-sm-2"></div>
+                <button class="col col-md-3 btn-basic" type="submit" (click)="addTask()">{{buttonName}}</button>&nbsp;
+                <button class="col col-md-3 btn-basic" type="submit" (click)="resetTask()">Reset</button>&nbsp;
+              </div>
+
+
+</div>

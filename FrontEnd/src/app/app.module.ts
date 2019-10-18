@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//import { BsModalService } from 'ngx-bootstrap/modal';
+//import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +27,8 @@ import { ViewTaskComponent } from './view-task/view-task.component';
     AppRoutingModule,
     FormsModule,
     NgbModule,
+   // BsModalService,
+   // BsModalRef,
     HttpClientModule,
     ToastrModule
   ],

@@ -2,8 +2,8 @@
     <div class="container col-md-20">
         <div class="container col-md-10">
       <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-            <input type="hidden" class="form-control" name="_id" #name="ngModel"
-            [(ngModel)]="userService.selectedUser._id">
+            <input type="hidden" class="form-control" name="User_Id" #name="ngModel"
+            [(ngModel)]="userService.selectedUser.User_Id">
 
             <div class="form-group row col-md-14">
                     <div class="col col-md-2">
@@ -112,7 +112,7 @@
 
                         <div class="row col-md-10">
                             <div class="col col-md-4 float-left">
-                                <input type="text" [value]="user._id" id="_id" readonly class="form-control">
+                                <input type="text" [value]="user.User_Id" id="User_Id" readonly class="form-control">
                               </div>
                         </div>
     

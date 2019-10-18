@@ -19,6 +19,10 @@ export class AddTaskService {
   readonly baseURL = 'http://localhost:3000/task';
   constructor(private http: HttpClient) { }
 
+  getParentList() {
+    return this.http.get(this.baseURL + 'parent');
+  }
+
   postNewTask(addtask : AddTask){
     return this.http.post<Response<AddTask>>(this.baseURL+'/add', addtask);
     

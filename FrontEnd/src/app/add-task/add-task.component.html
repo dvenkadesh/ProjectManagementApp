@@ -1,10 +1,33 @@
 <div class="container col-md-6"> 
+
+                <div class="row col-md-16">
+                                <label class="control-label col-sm-2" for="project">Project:</label>
+                                <div class="col-sm-6">
+                                  <!--    <input type="text" class="form-control" id="project" placeholder="Enter project" [(ngModel)]="selectedProjName" disabled>-->
+                                  <input type="text" class="form-control" id="project" placeholder="Enter project"
+                                    [(ngModel)]="selectedProjName" disabled>
+                                </div>
+                                <div class="col-sm-4">
+                                  <button type="button" class="btn border btn-basic" style="border-radius: 50%" (click)="openModal(projModal,1)" [disabled]="updateDisabled">Search</button>
+                                </div>
+                              </div><br>
         <div class="row col-md-16">
                 <label class="control-label col-sm-2" for="task">Task:</label>
                 <div class="col-sm-8">
                   <input type="text" class="form-control" id="task" placeholder="Enter task" [(ngModel)]="taskToAdd.Task_Name">
                 </div>
         </div>
+
+        <div class="row col-md-16">
+
+                        <div class="checkbox">
+                          <label>&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" [(ngModel)]="isParentTask" (ngModelChange)="isParTaskChange($event)"
+                              [disabled]="updateDisabled"> Parent Task
+                          </label>
+                        </div>
+                
+                      </div>
 
         <div class="row col-md-16">
                     <label class="control-label col-sm-2" for="priority">Priority:</label>
@@ -33,3 +56,28 @@
 
 
 </div>
+
+<ng-template #projModal>
+                <div class="modal-header">
+                  <h4 class="modal-title pull-left">Search Project</h4>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText"
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="searchProject($event.target.value)">
+                    </div>
+                  </div>
+                  <div class="list-group scrollbar">
+                    <a class="list-group-item" *ngFor="let proj of projects" [class.active]="proj===selectedProj"
+                      (click)="setIndexProj(proj)">{{proj.Project_Name}}</a>
+                  </div>
+                </div>
+                <div class="modal-footer text-right">
+                  <button class="btn btn-primary" (click)="selectProj()">Ok</button>
+                  <button class="btn btn-default" (click)="cancelProj()">Cancel</button>
+                </div>
+</ng-template>

@@ -52,6 +52,36 @@ router.get('/', (req, res) => {
          
 
     }
+
+    router.put('/:Task_Id', (req, res) => {
+    
+        let taskId = req.params.Task_Id;
+            Task.findOne({Task_Id: taskId}, (err, taskData) =>{
+                if(err){
+                    console.log('Error in Putting Task: ' + JSON.stringify(err, undefined, 2));
+                }else{
+                    if(taskData){
+                        taskData.Parent= req.body.Parent,
+                        taskData.Project= req.body.Project,
+                        taskData.Task_Name= req.body.Task_Name,
+                        taskData.Start_Date= req.body.Start_Date,
+                        taskData.End_Date= req.body.End_Date,
+                        taskData.Priority= req.body.Priority,
+                        taskData.Status= req.body.Status,
+                        taskData.User= req.body.User
+    
+                        taskData.save((err, taskData) => {
+                            if(err){
+                                console.log('Error in saving Task: ' + JSON.stringify(err, undefined, 2));
+                            }else{
+                                
+                                res.send(taskData);
+                            }
+                        });
+                    }
+                }
+            });
+    })
     
 });
 

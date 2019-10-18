@@ -53,15 +53,18 @@ router.put('/:_id', (req, res) => {
 
    }); */
 
-   router.post('/edit/:_id', (req, res) => {
+   router.post('/edit/:User_Id', (req, res) => {
 
     
     var usr = {
+        User_Id: req.body.User_Id,
         First_Name: req.body.First_Name,
         Last_Name: req.body.Last_Name,
         Employee_Id: req.body.Employee_Id,
+        Project_Id: req.body.Project_Id,
+        Task_Id: req.body.Task_Id
     };
-    User.findOneAndUpdate(req.params._id, { $set: usr }, { new: true }, (err, doc) => {
+    User.findOneAndUpdate(req.params.User_Id, { $set: usr }, { new: true }, (err, doc) => {
         if (!err) {
             res.send({ 'Success': true, 'Data': doc });
         } else {
@@ -101,9 +104,12 @@ router.put('/:_id', (req, res) => {
 
 router.post('/add', (req, res) => {
     var usr = new User({
+        User_Id: req.body.User_Id,
         First_Name: req.body.First_Name,
         Last_Name: req.body.Last_Name,
-        Employee_Id: req.body.Employee_Id
+        Employee_Id: req.body.Employee_Id,
+        Project_Id: req.body.Project_Id,
+        Task_Id: req.body.Task_Id
         });
 
     usr.save((err, doc) => {
@@ -150,6 +156,21 @@ router.get('/', (req, res) => {
             }
         });
 
+    }
+});
+
+router.get('/:User_Id', (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.sendStatus(400).send({ 'Success': false, 'message': 'Failed to retrieve User' });
+    } else {
+        User.findById(req.params.id, (err, doc) => {
+            if (!err) {
+                res.send({ 'Success': true, 'Data': doc });
+            }
+            else {
+                res.send({ 'Success': false, 'message': 'Failed to retrieve User' });
+            }
+        });
     }
 });
 

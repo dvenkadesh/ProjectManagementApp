@@ -19,6 +19,10 @@ export class ProjectService {
   readonly baseURL = 'http://localhost:3000/project';
   constructor(private http: HttpClient) { }
 
+  getProjectList() {
+    return this.http.get(this.baseURL);
+  }
+
   postNewProject(newproject : Project){
     return this.http.post<Response<Project>>(this.baseURL+'/add', newproject);
     

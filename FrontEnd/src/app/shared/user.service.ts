@@ -39,7 +39,7 @@ export class UserService {
   }
 
   putUser(usr: User) {
-    return this.http.post<Response<User>>(this.baseURL + '/edit/' + usr._id, usr);
+    return this.http.post<Response<User>>(this.baseURL + '/edit/' + usr.User_Id, usr);
   }
 
     //search for users.

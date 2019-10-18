@@ -52,6 +52,22 @@ router.get('/', (req, res) => {
          
 
     }
+
+    router.get('/:_id', (req, res) => {
+    
+        if (!ObjectId.isValid(req.params._id)) {
+            return res.sendStatus(400).send({ 'Success': false, 'message': 'Failed to retrieve User' });
+        } else {
+            Parent.findById(req.params._id, (err, doc) => {
+                if (!err) {
+                    res.send(doc);
+                }
+                else {
+                    res.send(err);
+                }
+            });
+        }
+    });
     
 });
 

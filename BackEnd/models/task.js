@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 
 var taskSchema = new mongoose.Schema({
     Task_Id: {type : Number},
+    Parent: {type : Schema.Types.Object, ref: 'Parent'},
+    Project: {type : Schema.Types.ObjectId, ref: 'project'},
     Task_Name: {type : String},
     Start_Date: {type : Date},
     End_Date: {type : Date},
     Priority: {type : Number},
-    Status: {type : Number, default: 0}
+    Status: {type : Number, default: 0},
+    User: {type: Schema.Types.ObjectId, ref: 'user'}
 });
 
 taskSchema.plugin(keyInc, {inc_field: 'Task_Id'});

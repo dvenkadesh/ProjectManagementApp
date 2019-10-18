@@ -35,9 +35,12 @@ export class AddUserComponent implements OnInit {
       form.reset();
       this.userService.selectedUser = {
         _id:"",
+        User_Id: null,
         First_Name:"",
         Last_Name: "",
-        Employee_Id:null
+        Employee_Id:null,
+        Project_Id: null,
+        Task_Id: null
 
       }
     }
@@ -62,7 +65,7 @@ export class AddUserComponent implements OnInit {
       return;
     }
     
-    if (!form.value._id){
+    if (!form.value.User_Id){
       this.userService.postUser(form.value).subscribe((res) => {
         this.resetForm(form);
         this.refreshUserList();
@@ -70,7 +73,7 @@ export class AddUserComponent implements OnInit {
         console.log ("inserted");
         return;
     }else{
-      console.log("form value is " + form.value._id);
+      console.log("form value is " + form.value.User_Id);
       this.userService.putUser(form.value).subscribe((res) => {
         if(res.Success){
           this.resetForm(form);

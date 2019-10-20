@@ -4,6 +4,33 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 var {Project} = require('../models/Project');
 
+router.post('/edit/:Project_Id', (req, res) => {
+    let projId = req.params.Project_Id;
+    Project.findOne({Project_Id: projId}, (err, projData) =>{
+        if(err){
+
+        }else{
+            if(projData){
+                projData.Project_Name = req.body.Project_Name;
+                projData.Start_Date = req.body.Start_Date;
+                projData.End_Date = req.body.End_Date;
+                projData.Priority = req.body.Priority;
+                projData.User = req.body.User;
+
+                projData.save((err, projData) => {
+                    if(err){
+
+                    }else{
+                        res.send(projData);
+                    }
+                });
+            }
+        }
+    });
+    
+//}
+});
+
 router.post('/add', (req, res) => {
     let projectData = req.body;
     let project = new Project(projectData);
@@ -13,6 +40,18 @@ router.post('/add', (req, res) => {
         }
     })
     
+});
+
+router.get('/:Project_Id', (req, res) => {
+    Project.deleteOne({Project_Id: req.params.Project_Id}, function(err, docs) {
+        if(!err){
+            console.log('inside delete');
+            res.send(docs);
+            //res.status(400).send({"Message": "Project Search Failed"});
+        }else{
+            res.status(400).send({"Message": "Project Search Failed"});
+        }
+    })   
 });
 
 router.get('/', (req, res) => {

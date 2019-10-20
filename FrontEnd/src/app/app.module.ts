@@ -13,6 +13,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
+import { TaskSearchComponent } from './task-search/task-search.component';
+import { ProjectSearchComponent } from './project-search/project-search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ViewTaskComponent } from './view-task/view-task.component';
     AddUserComponent,
     AddTaskComponent,
     AddProjectComponent,
-    ViewTaskComponent
+    ViewTaskComponent,
+    TaskSearchComponent,
+    ProjectSearchComponent
   ],
   imports: [
     BrowserModule,

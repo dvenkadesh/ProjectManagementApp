@@ -1,1 +1,26 @@
-<p>view-task works!</p>
+<div class="container col-md-14 p-0 m-10">
+        <div class="col col-md-1">
+           <b><label>Project:</label></b>
+        </div>
+        <div class="col col-md-4">
+           <input type="text" class="form-control" name="projectName" aria-describedby="projectName" 
+           readonly [(ngModel)]="project && project.Project">
+        </div>
+        <div class="col col-md-1">
+           <button class="btn btn-default border" style="border-radius: 50%" 
+           data-toggle="modal" data-target="#projectSearch">Search</button>
+        </div>
+       <div class="col col-md-2">
+          <label style="padding-left: 30%"> Sort Task By:</label>
+       </div>
+       <div class="col col-md-4">
+             <button type="button" style="width :65px; height:30px ;font-size: 10px" [disabled]="!TasksList" (click)="sortTasks('StartDate')">Start Date</button> &nbsp;
+             <button type="button" style="width :65px; height:30px ;font-size: 10px" [disabled]="!TasksList" (click)="sortTasks('EndDate')">End Date</button>&nbsp;
+             <button type="button" style="width :65px; height:30px ;font-size: 10px" [disabled]="!TasksList" (click)="sortTasks('Priority')">Priority</button>&nbsp;
+             <button type="button" style="width :65px; height:30px ;font-size: 10px" [disabled]="!TasksList" (click)="sortTasks('Status')">Completed</button>&nbsp;
+       </div>
+     </div>
+
+     <app-project-search (projectSelected)="selectedProject($event)"></app-project-search>
+
+

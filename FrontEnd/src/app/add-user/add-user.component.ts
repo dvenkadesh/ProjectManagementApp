@@ -15,19 +15,20 @@ import { NgForm } from '@angular/forms';
 })
 export class AddUserComponent implements OnInit {
 
-  UsersList       : User[];
+ // UsersList       : User[];
   EditOrAdd: String;
 
   constructor(public userService: UserService) { 
     this.EditOrAdd = "Add";
+   // this.resetForm(); 
   }
   
 
   ngOnInit() {
-    this.refreshUserList();
     this.EditOrAdd = "Add";
     this.resetForm();
-    
+    this.refreshUserList();
+   
   }
 
   resetForm(form?: NgForm){

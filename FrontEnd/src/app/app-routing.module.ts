@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ModalModule} from 'ngx-bootstrap';
 
 import { AddUserComponent} from './add-user/add-user.component';
 import { AddProjectComponent} from './add-project/add-project.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+  ModalModule.forRoot()],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

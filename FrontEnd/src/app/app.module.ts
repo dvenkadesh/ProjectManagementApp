@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-//import { BsModalService } from 'ngx-bootstrap/modal';
-//import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,8 +29,7 @@ import { ProjectSearchComponent } from './project-search/project-search.componen
     AppRoutingModule,
     FormsModule,
     NgbModule,
-   // BsModalService,
-   // BsModalRef,
+   //BsModalRef,
     HttpClientModule,
     ToastrModule
   ],

@@ -1,6 +1,6 @@
   
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ActivatedRoute } from '@angular/router';
 import {ViewTaskService} from '../shared/view-task.service';
@@ -14,20 +14,33 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-task',
   templateUrl: './view-task.component.html',
-  styleUrls: ['./view-task.component.css']
+  styleUrls: ['./view-task.component.css'],
+  providers: [ViewTaskService]
 })
 export class ViewTaskComponent implements OnInit {
-  project     : Project;
+  
 
-  constructor(private router      : Router,
-    private route       : ActivatedRoute) { }
+  constructor(public modalService: BsModalService) { }
 
   ngOnInit() {
   }
 
-  selectedProject(project: Project) {
-    this.project = project;
-    //this.retrieveTasks();
-  }
+  projects: Array<Project>;
+ modalRef: BsModalRef;
+
+
+
+    openModal(template: TemplateRef<any>, type: number) {
+      console.log('i am in');
+    /* if (type === 1) {
+      this.projectService.getProjectList().subscribe((res) => {
+        this.projects = res as Project[];
+        this.modalRef = this.modelservice.show(template);
+      },
+        (error) => {
+          console.log(error);
+        });
+    }  */
+  }   
 
 }

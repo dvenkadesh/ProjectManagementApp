@@ -1,23 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ModalModule} from 'ngx-bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
+import { Ng5SliderModule } from 'ng5-slider';
+import { ToastrModule } from 'ngx-toastr';
 
-import { AddUserComponent} from './add-user/add-user.component';
-import { AddProjectComponent} from './add-project/add-project.component';
-import { AddTaskComponent} from './add-task/add-task.component';
 import { ViewTaskComponent} from './view-task/view-task.component';
+import { UserComponent} from './user/user.component';
+import { ProjectComponent } from './project/project.component';
+import { AddTaskComponent} from './add-task/add-task.component';
 
 
 const routes: Routes = [
-  { path: 'addUser', component: AddUserComponent },
-  { path: 'addProject', component: AddProjectComponent },
-  { path: 'addTask', component: AddTaskComponent },
-  { path: 'viewTask', component: ViewTaskComponent }
+  { path: 'viewTask', component: ViewTaskComponent},
+  { path: 'user', component: UserComponent},
+  { path: 'project', component: ProjectComponent},
+  { path: 'addTask', component: AddTaskComponent},
+  { path: '', redirectTo: '/user', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),
-  ModalModule.forRoot()],
+  imports: [BrowserModule,
+    
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
+    RouterModule.forRoot(routes, { useHash: true }),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
+    Ng5SliderModule],
+    
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

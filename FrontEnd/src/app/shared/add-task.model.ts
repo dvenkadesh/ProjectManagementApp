@@ -1,16 +1,17 @@
 import { User } from './user.model';
 import { Project } from './project.model';
 
+
 export class AddTask {
-    Task_Id: number;
-    Task_Name: string;
-    Priotity: number;
+    Status : number;
     Start_Date: Date;
     End_Date: Date;
-    Status : number;
-    User: User;
-    Parent: ParentTask;
+    Priotity: number;
     Project: Project;
+    Task_Id: number;
+    Parent: ParentTask;
+    Task_Name: string;
+    User: User;
 }
 
 export class ParentTask {

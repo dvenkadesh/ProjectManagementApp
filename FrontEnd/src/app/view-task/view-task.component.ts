@@ -1,6 +1,5 @@
-  
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ActivatedRoute } from '@angular/router';
 import {ViewTaskService} from '../shared/view-task.service';
@@ -18,29 +17,56 @@ import { Router } from '@angular/router';
   providers: [ViewTaskService]
 })
 export class ViewTaskComponent implements OnInit {
+
+  constructor(public viewTaskService: ViewTaskService, public projectService: ProjectService,
+    public modalService: BsModalService, private route: ActivatedRoute,
+    public toastr: ToastrService, private router: Router,
+    private addTaskService: AddTaskService) { 
+      
+    }
+
+  modalRef: BsModalRef;
+  taskProj: string;
+  updTask: AddTask;
+  selectedParent: ParentTask;
+  selectedProjId: number;
+  projects: Array<Project>;
+  searchText: string;
+
+  selectedProjName: string;
+  selectedProj: Project;
+
   
 
-  constructor(public modalService: BsModalService) { }
-
   ngOnInit() {
+    this.refreshTaskList();
+
+  }
+ 
+
+    selectProj() {
+      if (this.selectedProj != null) {
+        this.selectedProjName = this.selectedProj.Project_Name;
+        this.taskProj = this.selectedProj._id;
+        this.selectedProj = null;
+        this.searchText = '';
+        this.modalRef.hide();
+  
+        this.viewTaskService.getTaskForProjectList(this.taskProj).subscribe((res) =>{
+          this.viewTaskService.tasks = res as AddTask[];
+        });
+  
+      }
+    }
+
+  refreshTaskList(){
+    this.viewTaskService.getTaskList().subscribe((res) =>{
+      this.viewTaskService.tasks = res as AddTask[];
+    });
   }
 
-  projects: Array<Project>;
- modalRef: BsModalRef;
 
 
 
-    openModal(template: TemplateRef<any>, type: number) {
-      console.log('i am in');
-    /* if (type === 1) {
-      this.projectService.getProjectList().subscribe((res) => {
-        this.projects = res as Project[];
-        this.modalRef = this.modelservice.show(template);
-      },
-        (error) => {
-          console.log(error);
-        });
-    }  */
-  }   
 
 }

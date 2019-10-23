@@ -11,7 +11,8 @@ var userSchema = new mongoose.Schema({
     Task_Id: { type: Number }
 });
 
-userSchema.plugin(keyInc, {inc_field: 'User_Id'});
+userSchema.plugin(keyInc, { inc_field: 'User_Id' });
 
 var User = mongoose.model('User', userSchema);
-module.exports = {User};
+
+module.exports = { User };

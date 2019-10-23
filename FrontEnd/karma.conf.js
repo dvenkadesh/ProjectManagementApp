@@ -16,9 +16,12 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/FrontEnd'),
+      dir: require('path').join(__dirname, './coverage/TaskManagement'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
+    },
+    preprocessors:{
+      '**/*js':'coverage'
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

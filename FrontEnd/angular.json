@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FrontEnd": {
+    "TaskManagementUI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/FrontEnd",
+            "outputPath": "dist/TaskManagementUI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -50,11 +51,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -63,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FrontEnd:build"
+            "browserTarget": "TaskManagementUI:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "FrontEnd:build:production"
+              "browserTarget": "TaskManagementUI:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FrontEnd:build"
+            "browserTarget": "TaskManagementUI:build"
           }
         },
         "test": {
@@ -84,6 +80,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": ["src/app/shared/add-task.model.ts","src/app/shared/project.model.ts","src/app/shared/view-task.model.ts","src/app/shared/user.model.ts"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -111,15 +109,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "FrontEnd:serve"
+            "devServerTarget": "TaskManagementUI:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "FrontEnd:serve:production"
+              "devServerTarget": "TaskManagementUI:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "FrontEnd"
+  "defaultProject": "TaskManagementUI"
 }

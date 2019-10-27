@@ -18,23 +18,24 @@ import { Router } from '@angular/router';
 })
 export class ViewTaskComponent implements OnInit {
 
-  constructor(public viewTaskService: ViewTaskService, public projectService: ProjectService,
-    public modalService: BsModalService, private route: ActivatedRoute,
-    public toastr: ToastrService, private router: Router,
-    private addTaskService: AddTaskService) { 
+  constructor(public modalService: BsModalService, private route: ActivatedRoute,
+    public viewTaskService: ViewTaskService, public projectService: ProjectService,
+    private addTaskService: AddTaskService,  public toastr: ToastrService, private router: Router
+    ) { 
       
     }
 
-  modalRef: BsModalRef;
-  taskProj: string;
-  updTask: AddTask;
-  selectedParent: ParentTask;
-  selectedProjId: number;
-  projects: Array<Project>;
-  searchText: string;
+    modalRef: BsModalRef;
+    searchText: string;
+    selectedProjId: number;
+    taskProj: string;
+    updTask: AddTask;
+    selectedParent: ParentTask;
+    selectedProjName: string;
+    projects: Array<Project>;
 
-  selectedProjName: string;
-  selectedProj: Project;
+    selectedProj: Project;
+
 
   
 
@@ -42,7 +43,59 @@ export class ViewTaskComponent implements OnInit {
     this.refreshTaskList();
 
   }
+
+  
+    openModal(template: TemplateRef<any>, type: number) {
+      if (type === 1) {
+        this.projectService.getProjectList().subscribe((res) => {
+          this.projects = res as Project[];
+          this.modalRef = this.modalService.show(template);
+        },
+          (error) => {
+            console.log(error);
+          });
+      } 
+    }
+
+  completeTask(task: AddTask){
+    this.updTask = task;
+    this.updTask.Status = 1;
+    this.viewTaskService.putTask(this.updTask).subscribe((res) => {
+      this.refreshTaskList();
+    })
+  }
+
+  refreshTaskList(){
+    this.viewTaskService.getTaskList().subscribe((res) =>{
+      this.viewTaskService.tasks = res as AddTask[];
+    });
+  }
+
+
+
+  cancelProj() {
+    this.modalRef.hide();
+    this.selectedProj = null;
+
+  }
+
+
+  setIndexProj(proj: Project) {
+    this.selectedProj = proj;
+    this.searchText = proj.Project_Name;
+  }
+
+  editTask(task: AddTask){
+    this.router.navigate(['/addTask', { task: JSON.stringify(task) }]);
+  }
  
+
+  sortTask(sortKey: string){
+    this.viewTaskService.getSortTaskList(sortKey).subscribe((res) => {
+      this.viewTaskService.tasks = res as AddTask[];
+    });
+  }
+
 
     selectProj() {
       if (this.selectedProj != null) {
@@ -58,12 +111,12 @@ export class ViewTaskComponent implements OnInit {
   
       }
     }
+  
 
-  refreshTaskList(){
-    this.viewTaskService.getTaskList().subscribe((res) =>{
-      this.viewTaskService.tasks = res as AddTask[];
-    });
-  }
+
+
+
+
 
 
 

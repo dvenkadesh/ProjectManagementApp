@@ -1,7 +1,6 @@
 import { User } from './user.model';
 import { Project } from './project.model';
 
-
 export class AddTask {
     Status : number;
     Start_Date: Date;

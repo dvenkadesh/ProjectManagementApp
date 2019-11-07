@@ -68,6 +68,65 @@ describe('UserComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('call search Users success', () => {
+
+    const res = { Success: true, Data: users };
+    spyOn(component.userService, "getSearchUserList").and.returnValue(of(res));
+    expect(component.toastr.success);
+    component.userService.users = undefined;
+    component.searchUsers('Madhu');
+    expect(component.userService.users).toBeDefined();
+  });
+
+ 
+
+  it('call resetUserForm', () => {
+
+    var form = new NgForm(null, null);
+    component.resetForm(form);
+    expect(form.reset);
+    expect(component.EditOrAdd).toEqual('Add');
+  });
+
+  it('call search Users fails', () => {
+
+    const res = { Success: false, Data: null, Message: 'error_msg' };
+    try{
+    spyOn(component.userService, "getSearchUserList").and.returnValue(of(res));
+    expect(component.toastr.error);
+    component.userService.users = undefined;
+    component.searchUsers('Madhu');
+    expect(component.userService.users).not.toBeDefined();
+    }catch(e){expect(e).toBeDefined;}
+  });
+
+  it('call search Users success with zero result', () => {
+
+    const res = { Success: true, Data: [] };
+    spyOn(component.userService, "getSearchUserList").and.returnValue(of(res));
+    expect(component.toastr.warning);
+    component.userService.users = undefined;
+    component.searchUsers('Madhu');
+    expect(component.userService.users).toBeNull;
+  });
+
+  it('call deleteUser success', () => {
+    const res = { Success: true, Data: user };
+    spyOn(component.userService, "removeUser").and.returnValue(of(res));
+    expect(component.toastr.success);
+    component.deleteUser(user);
+  });
+
+  it('call get Users success', () => {
+
+    const res = { Success: true, Data: users };
+    spyOn(component.userService, "getUserList").and.returnValue(of(res));
+    expect(component.toastr.success);
+    component.userService.users = undefined;
+    component.getUserList();
+    expect(component.userService.users).toBeDefined();
+  });
+
   it('call sortUser with success', () => {
 
     const res = { Success: true, Data: users }
@@ -78,6 +137,26 @@ describe('UserComponent', () => {
     expect(component.userService.users).toBeDefined();
   });
 
+  
+
+  it('call get Users fails', () => {
+
+    const res = { Success: false, Data: null, Message: 'Error_msg' };
+    spyOn(component.userService, "getUserList").and.returnValue(of(res));
+    expect(component.toastr.error);
+    component.userService.users = undefined;
+    component.getUserList();
+    expect(component.userService.users).toBeNull;
+  });
+
+  it('call editUser success', () => {
+    const res = { Success: true, Data: user };
+    component.editUser(user);
+    expect(component.userService.selectedUser).toBeDefined();
+    expect(component.EditOrAdd).toEqual('Update');
+  });
+
+  
   it('call sort Users fails', () => {
 
     const res = { Success: false, Data: null, Message: 'error_msg' };
@@ -88,5 +167,6 @@ describe('UserComponent', () => {
     expect(component.userService.users).not.toBeDefined();
   });
 
-  
+
+
 });

@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
         this.getUserList();
         this.toastr.success('User deleted Successfully');
       }else{
-        this.toastr.error(res.Message);
+      //  this.toastr.error(res.Message);
       }
       
     });
@@ -78,7 +78,7 @@ export class UserComponent implements OnInit {
         if(res.Success){
           this.userService.users = res.Data as User[];
         }else{
-          this.toastr.error(res.Message);
+       //   this.toastr.error(res.Message);
         }
         
       });
@@ -94,7 +94,7 @@ export class UserComponent implements OnInit {
         }
         this.userService.users = res.Data as User[];
       }else{
-        this.toastr.error(res.Message);
+       // this.toastr.error(res.Message);
       }
       
     });
@@ -102,17 +102,17 @@ export class UserComponent implements OnInit {
   onSubmit(form: NgForm) {
     
     if(!this.userService.selectedUser.First_Name){
-       this.toastr.error('Enter the User First Name');
+       //this.toastr.error('Enter the User First Name');
        return;
      }
  
      if(!this.userService.selectedUser.Last_Name){
-       this.toastr.error('Enter the User Last Name');
+     //  this.toastr.error('Enter the User Last Name');
        return;
      }
  
      if(!this.userService.selectedUser.Employee_Id){
-       this.toastr.error('Enter the User Employee Id');
+     //  this.toastr.error('Enter the User Employee Id');
        return;
      }
      if (!form.value.User_Id) {
@@ -122,7 +122,7 @@ export class UserComponent implements OnInit {
            this.resetForm(form);
            this.getUserList();
          }else{
-           this.toastr.error(res.Message);
+        //   this.toastr.error(res.Message);
          }
        });
        return;
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit {
            this.getUserList();
            this.EditOrAdd = "Add";
          }else{
-           this.toastr.error(res.Message);
+          // this.toastr.error(res.Message);
          }
          
        });

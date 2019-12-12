@@ -85,6 +85,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": ["src/app/shared/add-task.model.ts","src/app/shared/project.model.ts","src/app/shared/view-task.model.ts","src/app/shared/user.model.ts"],
             "assets": [
               "src/favicon.ico",
               "src/assets"

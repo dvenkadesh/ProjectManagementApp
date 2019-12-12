@@ -1,0 +1,15 @@
+FROM node:9..6.1
+
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
+
+RUN npm install -g @angular/cli@8.3.8
+
+COPY . /usr/src/app
+
+CMD ng serve --host 0.0.0.0 --port 4200
+
+
+//Comments to run
+//docker build -t frontend-docker-imange .
+//docker run -it -v ${PWD}:/usr/src/app -p 4200:4200 frontend-docker-image
